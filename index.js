@@ -1,17 +1,26 @@
-function combinationSum3(k, n) {
+function letterCombinations(digits) {
+  if (digits.length === 0) return [];
+  const map = {
+    2: "abc",
+    3: "def",
+    4: "ghi",
+    5: "jkl",
+    6: "mno",
+    7: "pqrs",
+    8: "tuv",
+    9: "wxyz",
+  };
   const result = [];
-  backtrack([], 1, k, n);
+  backtrack("", 0);
   return result;
-  function backtrack(combination, start, k, n) {
-    if (n === 0 && k === 0) {
-      result.push([...combination]);
+  function backtrack(current, index) {
+    if (current.length === digits.length) {
+      result.push(current);
       return;
     }
-    if (n < 0 || k === 0) return;
-    for (let i = start; i <= 9; i++) {
-      combination.push(i);
-      backtrack(combination, i + 1, k - 1, n - i);
-      combination.pop();
+    const letters = map[digits[index]];
+    for (const letter of letters) {
+      backtrack(current + letter, index + 1);
     }
   }
 }
