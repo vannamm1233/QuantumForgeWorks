@@ -1,17 +1,11 @@
-function rotateRight(head, k) {
-  if (!head || k === 0) return head;
-  let length = 1;
-  let tail = head;
-  while (tail.next) {
-    length++;
-    tail = tail.next;
+function minMeetingRooms(intervals) {
+  intervals.sort((a, b) => a[0] - b[0]);
+  const minHeap = new MinHeap();
+  for (const interval of intervals) {
+    if (minHeap.size() > 0 && minHeap.peek() <= interval[0]) {
+      minHeap.pop();
+    }
+    minHeap.push(interval[1]);
   }
-  k = k % length;
-  if (k === 0) return head;
-  let newTail = head;
-  for (let i = 1; i < length - k; i++) newTail = newTail.next;
-  const newHead = newTail.next;
-  newTail.next = null;
-  tail.next = head;
-  return newHead;
+  return minHeap.size();
 }
