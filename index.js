@@ -1,11 +1,10 @@
-function minMeetingRooms(intervals) {
-  intervals.sort((a, b) => a[0] - b[0]);
-  const minHeap = new MinHeap();
-  for (const interval of intervals) {
-    if (minHeap.size() > 0 && minHeap.peek() <= interval[0]) {
-      minHeap.pop();
-    }
-    minHeap.push(interval[1]);
-  }
-  return minHeap.size();
-}
+const aliceBalanceAfter = await aptos.getAccountCoinsData({
+  accountAddress: aliceAddress,
+  minimumLedgerVersion: BigInt(response.version),
+});
+const bobBalanceAfter = await aptos.getAccountCoinsData({
+  accountAddress: bobAddress,
+});
+const sponsorBalanceAfter = await aptos.getAccountCoinsData({
+  accountAddress: sponsorAddress,
+});
