@@ -1,6 +1,9 @@
-function flattenArray(arr) {
-  return arr.reduce(
-    (acc, curr) => acc.concat(Array.isArray(curr) ? flattenArray(curr) : curr),
-    [],
-  );
+function maxProfit(prices) {
+  let minPrice = Infinity;
+  let maxProfit = 0;
+  for (const price of prices) {
+    minPrice = Math.min(minPrice, price);
+    maxProfit = Math.max(maxProfit, price - minPrice);
+  }
+  return maxProfit;
 }
